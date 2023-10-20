@@ -17,7 +17,7 @@ def hbnb():
     return 'HBNB'
 
 @app.route('/c/<text>')
-def c_is_fun('text'):
+def c_is_fun(text):
     """print C followed by the value of the text"""
     return 'C {}'.format(text.replace('_', ' '))
 
