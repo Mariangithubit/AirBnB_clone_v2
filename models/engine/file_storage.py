@@ -16,6 +16,7 @@ classes = {
             'Review': Review
             }
 
+
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
     __file_path = 'file.json'
@@ -76,7 +77,7 @@ class FileStorage:
         elif cls is None:
             total = len(self.__objects)
         return total
-    
+
     def close(self):
         """ Deserializing the JSON file to objects """
         self.reload()
