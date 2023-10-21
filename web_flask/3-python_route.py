@@ -11,15 +11,18 @@ def hello():
     """print welcome page"""
     return 'Hello HBNB!'
 
+
 @app.route('/hbnb')
 def hbnb():
     """print another word"""
     return 'HBNB'
 
+
 @app.route('/c/<text>')
 def c_is_fun(text):
     """print C followed by the value of the text"""
     return 'C {}'.format(text.replace('_', ' '))
+
 
 @app.route('/python')
 @app.route('/python/<text>')
