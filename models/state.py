@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 import models
+import shlex
 import sqlalchemy
 from os import getenv
 from sqlalchemy import Column, String
@@ -13,9 +14,8 @@ class State(BaseModel, Base):
     if getenv("HBNB_TYPE_STORAGE") == 'db':
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
-        cities = relationship("City", backref="state", cascade="all, delete")
-    else:
-        name = ""
+        cities = relationship("City", cascade="all, delete, delete=opphan",
+                                backref="state")
 
     def __init__(self, *args, **kwargs):
         """initializes state"""
@@ -25,8 +25,14 @@ class State(BaseModel, Base):
             @property
             def cities(self):
                 """getter for cities"""
+                var = models.storage.all()
                 city_list = []
-                for city in models.storage.all('City').values():
+                result = []
+                for city in var:
+                    city = key.replace('.', ' ')
+                    city = shlex.split(city)
                     if city.state_id == self.id:
-                        city_list.append(city)
+                        city_list.append(var[key])
+                for elem in city_list:
+                    result.append(elem)
                 return city_list
