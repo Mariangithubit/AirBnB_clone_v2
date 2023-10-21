@@ -11,6 +11,7 @@ def hello():
     """print welcome page"""
     return 'Hello HBNB!'
 
+
 @app.route('/hbnb')
 def hbnb():
     """print another word"""
